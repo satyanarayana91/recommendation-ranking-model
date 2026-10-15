@@ -10,6 +10,26 @@ A practical machine learning project focused on building a recommendation rankin
 
 Build and evaluate a recommendation ranking system that ranks candidate items for a user or query using machine learning.
 
+## Problem Statement
+
+### What Is Being Ranked?
+
+The system ranks a set of candidate items that could potentially be recommended to a user.
+
+### For Whom?
+
+The ranking is performed for individual users based on available user, item, and interaction features, such as user preferences, historical interactions, and item characteristics.
+
+### Why Rank Them?
+
+A recommendation system may retrieve multiple candidate items, but not all candidates are equally relevant to the user. The goal of the ranking stage is to assign a relevance score to each candidate and order them so that the most relevant items appear higher in the recommendation list.
+
+### Objective
+
+Build a machine learning-based ranking system that learns from user-item interaction data and ranks candidate items according to their predicted relevance to the user.
+
+The project will focus on comparing a baseline ranking approach with an XGBoost-based ranking model and evaluating ranking quality using metrics such as NDCG and MRR.
+
 ## Planned Pipeline
 
 Candidate Generation → Retrieval → Feature Engineering → Ranking Model → Reranking → Evaluation
