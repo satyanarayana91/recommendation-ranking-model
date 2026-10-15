@@ -12,6 +12,31 @@ Build and evaluate a recommendation ranking system that ranks candidate items fo
 
 ## Problem Statement
 
+## Architecture
+
+The recommendation ranking pipeline follows four main stages:
+
+```mermaid
+flowchart TD
+    A["Candidate Generation<br/>Generate potential items for the user"]
+    B["Retrieval<br/>Retrieve relevant candidates"]
+    C["Ranking<br/>ML model assigns relevance scores"]
+    D["Reranking<br/>Produce the final ordered recommendation list"]
+
+    A --> B
+    B --> C
+    C --> D
+```
+
+### Pipeline Overview
+
+- **Candidate Generation:** Generate a set of potential items that could be recommended to a user.
+- **Retrieval:** Retrieve relevant candidates for the user.
+- **Ranking:** Use a machine learning model to assign relevance scores and rank the candidates.
+- **Reranking:** Apply the final ranking logic to produce the ordered recommendation list.
+
+**Current status:** Architecture documented; implementation not started.
+
 ### What Is Being Ranked?
 
 The system ranks a set of candidate items that could potentially be recommended to a user.
