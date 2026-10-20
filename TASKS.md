@@ -42,6 +42,23 @@
 - [ ] Analyze ranking errors
 - [ ] Document limitations
 
+### Evaluation Methodology
+
+- [ ] Define the recommendation request and candidate-item evaluation setup.
+- [ ] Select the relevance-labeling strategy.
+- [ ] Define the train-validation-test split.
+- [ ] Check for data leakage.
+- [ ] Implement the popularity baseline.
+- [ ] Choose the evaluation cutoff, such as K = 5 or K = 10.
+- [ ] Implement NDCG@K.
+- [ ] Implement MRR.
+- [ ] Validate metric calculations using manually checked examples.
+- [ ] Evaluate the baseline on the test set.
+- [ ] Evaluate the trained ranking model on the same test setup.
+- [ ] Compare baseline and model results.
+- [ ] Analyze ranking errors and dataset limitations.
+- [ ] Document actual results only after evaluation is complete.
+
 ## 6. Explainability
 
 - [ ] Apply SHAP to the ranking model
