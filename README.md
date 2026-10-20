@@ -154,3 +154,108 @@ No performance results will be reported until the model has been implemented and
 This is a personal portfolio project using public data. Its results will demonstrate performance on the selected dataset and evaluation setup; they will not guarantee similar performance in a production recommendation system.
 
 No proprietary company or client data will be used.
+
+
+## Evaluation Methodology
+
+### Objective
+
+The objective of evaluation is to determine whether the recommendation ranking model places relevant items higher in the ranked results.
+
+The project will establish a baseline ranking approach and compare it with an XGBoost ranking model using appropriate ranking metrics.
+
+### Baseline Ranking Approach
+
+A baseline provides a reference point for measuring whether a more advanced ranking model improves recommendation quality.
+
+The initial baseline will use **item popularity**, measured using interaction counts from the training data. Candidate items will be ranked by their popularity scores.
+
+The baseline and trained model will be evaluated using the same test requests, candidate items, relevance labels, and ranking metrics wherever possible.
+
+**Status:** Planned. Implementation and evaluation have not started.
+
+### Normalized Discounted Cumulative Gain (NDCG)
+
+NDCG evaluates a ranked list by considering both the relevance of items and their positions. Highly relevant items appearing near the top contribute more to the score.
+
+NDCG is particularly useful when relevance labels have multiple levels, such as ratings of 1–5 or graded relevance labels.
+
+**Interpretation:**
+
+- A score closer to 1 indicates a ranking closer to the ideal ordering under the chosen evaluation setup.
+- A lower score indicates that relevant items may be ranked less effectively.
+- NDCG accounts for the positions of relevant items throughout the evaluated list.
+
+The project will select an appropriate cutoff, such as NDCG@5 or NDCG@10, based on the recommendation use case.
+
+### Mean Reciprocal Rank (MRR)
+
+MRR measures how highly the first relevant item appears in a ranked list.
+
+For a single recommendation request, the reciprocal rank is calculated as:
+
+`Reciprocal Rank = 1 / Rank of the First Relevant Item`
+
+Examples:
+
+- First relevant item at rank 1: score = 1.0
+- First relevant item at rank 2: score = 0.5
+- First relevant item at rank 3: score ≈ 0.333
+- No relevant item found: score = 0
+
+MRR is the average reciprocal rank across all evaluated requests.
+
+**Interpretation:**
+
+- A score closer to 1 indicates that the first relevant item generally appears near the top.
+- A lower score indicates that users may need to look further down the list to find a relevant item.
+- MRR focuses on the first relevant result, rather than the quality of every item in the list.
+
+The definition of relevance and the treatment of requests with no relevant items will be documented as part of the evaluation methodology.
+
+### Evaluation Dataset and Data Splitting
+
+The dataset will be divided into training, validation, and test sets using a strategy appropriate for the selected data.
+
+- **Training set:** Used to train the ranking model and calculate training-derived features.
+- **Validation set:** Used for model selection and hyperparameter tuning.
+- **Test set:** Reserved for final evaluation after model development.
+
+Where timestamps are available and suitable, a temporal split may be used to evaluate recommendations against future interactions.
+
+Popularity scores and other features must not use information from the evaluation period. Data leakage will be checked before interpreting the results.
+
+### Model Comparison
+
+The project will compare two approaches:
+
+1. **Popularity baseline:** Ranks candidate items using interaction counts from the permitted training data.
+2. **XGBoost ranking model:** Uses engineered user, item, and interaction features to learn a ranking function.
+
+Both approaches will be evaluated using the same test requests, candidate sets, and relevance labels wherever possible.
+
+The comparison will include NDCG@K and MRR, together with ranking-error analysis and documented dataset limitations.
+
+### What the Numbers Mean
+
+The evaluation results will help answer the following questions:
+
+- Does the XGBoost ranking model outperform the popularity baseline?
+- Does the model place highly relevant items closer to the top?
+- Does the model improve the position of the first relevant item?
+- Are improvements consistent across different recommendation requests?
+- Which ranking errors and limitations remain?
+
+For example, if a baseline achieves NDCG@10 of 0.60 and the model achieves 0.70, the model has an absolute improvement of 0.10, or 10 percentage points on the metric's 0–1 scale.
+
+The relative improvement would be approximately 16.7%. These numbers are illustrative only and are not results from this project.
+
+A higher metric score does not automatically establish a better user experience. Offline evaluation measures performance against the available dataset and relevance labels. Online experiments may be required to establish real-world impact.
+
+### Current Evaluation Status
+
+**Status:** Evaluation methodology documented; implementation and evaluation are pending.
+
+NDCG, MRR, baseline scores, and model comparison results will be reported only after implementation and evaluation.
+
+No performance improvement is claimed at this stage.
