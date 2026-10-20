@@ -99,3 +99,19 @@ Out of scope unless a demonstrated need arises:
 ## Completion Principle
 
 Only mark a task complete after its implementation or documentation has been verified. Report real metrics, preserve reproducibility, and document limitations honestly.
+
+
+## Dataset Selection and Data Limitations
+
+- [ ] Identify suitable public recommendation datasets.
+- [ ] Compare datasets based on interaction types, features, size, and documentation.
+- [ ] Select a dataset appropriate for the project objective.
+- [ ] Document the dataset source and applicable license or usage terms.
+- [ ] Understand the users, items, interactions, and relevance labels.
+- [ ] Inspect the dataset schema and data types.
+- [ ] Identify missing values, duplicate records, and data-quality issues.
+- [ ] Investigate interaction sparsity, popularity bias, and cold-start limitations.
+- [ ] Define the relevance-labeling strategy.
+- [ ] Identify potential sources of data leakage.
+- [ ] Plan the train-validation-test split.
+- [ ] Document confirmed dataset limitations after inspection.
