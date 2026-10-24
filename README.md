@@ -400,3 +400,19 @@ Reproducibility does not guarantee identical results across every hardware confi
 **Status:** Reproducibility documentation drafted; implementation and execution are pending.
 
 All commands in this section are planned examples. They must be validated against the final repository structure and actual implementation before being presented as tested instructions.
+
+
+### Project Evidence
+
+Screenshots will be added after the corresponding project components have been implemented and tested.
+
+Planned evidence includes:
+
+- **Model evaluation:** Measured NDCG@K and MRR results, including baseline comparisons.
+- **Experiment tracking:** MLflow runs, parameters, metrics, and available model artifacts.
+- **API demonstration:** A successful `/rank` request and its response.
+- **Performance dashboard:** Optional visual summary of evaluation results.
+
+All screenshots will represent actual project outputs. No placeholder screenshots or fabricated performance results will be presented as evidence.
+
+**Current status:** Evidence collection is pending implementation. No model results, MLflow experiments, or API screenshots are available yet.
