@@ -259,3 +259,144 @@ A higher metric score does not automatically establish a better user experience.
 NDCG, MRR, baseline scores, and model comparison results will be reported only after implementation and evaluation.
 
 No performance improvement is claimed at this stage.
+
+
+## Reproducibility and Setup
+
+### Prerequisites
+
+The project is planned to use the following tools and technologies:
+
+- Python for data processing and model development.
+- Pandas and NumPy for data manipulation.
+- Scikit-learn for preprocessing and supporting ML utilities.
+- XGBoost for the ranking model.
+- MLflow for experiment tracking.
+- FastAPI for exposing the ranking model through an API.
+- Uvicorn for running the API server.
+- Git for version control.
+
+Exact package versions and system requirements will be documented after the implementation environment has been established and tested.
+
+### Project Environment
+
+The project will use a Python virtual environment to isolate dependencies and improve reproducibility.
+
+The following commands are planned for a Windows environment.
+
+Create the project directory and navigate into it:
+
+```bash
+mkdir recommendation-ranking-model
+cd recommendation-ranking-model
+```
+
+Create a virtual environment:
+
+```bash
+python -m venv .venv
+```
+
+Activate the environment in Windows Command Prompt:
+
+```bash
+.venv\Scripts\activate
+```
+
+Activate the environment in PowerShell:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+The Python version will be selected based on compatibility with the final dependency versions.
+
+### Install Dependencies
+
+Once the dependency list has been established, install the project requirements using:
+
+```bash
+pip install -r requirements.txt
+```
+
+The `requirements.txt` file will contain the project's required Python packages and compatible versions.
+
+After the environment has been tested, dependency versions will be pinned or locked to help reproduce the same environment.
+
+### Dataset Setup
+
+The project will use a publicly available recommendation dataset.
+
+After selecting the dataset, the README will document:
+
+- The original dataset source.
+- Download instructions.
+- Applicable license and usage restrictions.
+- Expected directory structure.
+- Required preprocessing steps.
+- Data schema and relevance-label definitions.
+
+Dataset files will not be committed to GitHub unless their license explicitly permits redistribution and the files are appropriate for repository storage.
+
+### Training the Ranking Model
+
+The project will eventually provide a training script that prepares the ranking data, trains the XGBoost ranking model, and records the relevant evaluation metrics.
+
+The planned command is:
+
+```bash
+python src/train.py
+```
+
+The final implementation will document the required input data, configuration parameters, model output location, and experiment-tracking behavior.
+
+**Status:** Planned — the training script has not been implemented or tested.
+
+### Running the Ranking API
+
+The project will expose the ranking functionality through a FastAPI endpoint.
+
+The planned API startup command is:
+
+```bash
+uvicorn src.api:app --reload
+```
+
+Once implemented, the API will provide an endpoint such as:
+
+```text
+POST /rank
+```
+
+The endpoint will accept a recommendation request and candidate items, apply the trained ranking model, and return the candidates ordered by predicted ranking scores.
+
+The final request and response schemas will be documented after implementation.
+
+The interactive API documentation will be available at:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+This URL will be usable when the API server has been implemented and started successfully.
+
+### Reproducibility Strategy
+
+The project will follow these practices to support reproducible experiments:
+
+- Use a documented Python environment and dependency versions.
+- Keep data preprocessing consistent between training and inference.
+- Use fixed random seeds where applicable.
+- Document dataset sources, splits, and relevance-label definitions.
+- Record model parameters and evaluation metrics.
+- Track experiments using MLflow.
+- Save model artifacts and configuration details.
+- Document known limitations and any differences between runs.
+
+Reproducibility does not guarantee identical results across every hardware configuration or software environment. Relevant version, hardware, and numerical differences will be documented when necessary.
+
+### Current Status
+
+**Status:** Reproducibility documentation drafted; implementation and execution are pending.
+
+All commands in this section are planned examples. They must be validated against the final repository structure and actual implementation before being presented as tested instructions.
