@@ -205,6 +205,19 @@ cython_debug/
 # Temporary file for partial code execution
 tempCodeRunnerFile.py
 
+# Downloaded MovieLens data: keep raw files local because the dataset terms
+# restrict redistribution without separate permission.
+data/raw/
+data/processed/
+
+# Local MLflow tracking store and generated experiment artifacts.
+mlruns/
+mlartifacts/
+artifacts/
+
+# Generated local model copy retained only for inspection while developing.
+reports/recommendation_ranker.json
+
 # Ruff stuff:
 .ruff_cache/
 

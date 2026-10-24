@@ -1,0 +1,61 @@
+{
+  "user_id": "843",
+  "top_k": 10,
+  "candidates": [
+    {
+      "item_id": "50",
+      "features": {
+        "user_interaction_count": 25.0,
+        "user_average_rating": 3.68,
+        "user_rating_std": 1.2151817422372124,
+        "item_interaction_count": 560.0,
+        "item_average_rating": 4.360714285714286,
+        "item_rating_std": 0.8741320400312237
+      }
+    },
+    {
+      "item_id": "59",
+      "features": {
+        "user_interaction_count": 25.0,
+        "user_average_rating": 3.68,
+        "user_rating_std": 1.2151817422372124,
+        "item_interaction_count": 76.0,
+        "item_average_rating": 4.078947368421052,
+        "item_rating_std": 0.9901266975458153
+      }
+    },
+    {
+      "item_id": "101",
+      "features": {
+        "user_interaction_count": 25.0,
+        "user_average_rating": 3.68,
+        "user_rating_std": 1.2151817422372124,
+        "item_interaction_count": 62.0,
+        "item_average_rating": 3.1774193548387095,
+        "item_rating_std": 1.1945805704477954
+      }
+    },
+    {
+      "item_id": "110",
+      "features": {
+        "user_interaction_count": 25.0,
+        "user_average_rating": 3.68,
+        "user_rating_std": 1.2151817422372124,
+        "item_interaction_count": 27.0,
+        "item_average_rating": 2.5925925925925926,
+        "item_rating_std": 1.0834155129908254
+      }
+    },
+    {
+      "item_id": "111",
+      "features": {
+        "user_interaction_count": 25.0,
+        "user_average_rating": 3.68,
+        "user_rating_std": 1.2151817422372124,
+        "item_interaction_count": 258.0,
+        "item_average_rating": 3.4844961240310077,
+        "item_rating_std": 0.9550968832559094
+      }
+    }
+  ]
+}

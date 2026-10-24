@@ -1,0 +1,7 @@
+feature,importance
+item_interaction_count,0.5260197
+item_average_rating,0.17936015
+item_rating_std,0.11487325
+user_interaction_count,0.06496959
+user_rating_std,0.057997394
+user_average_rating,0.056780044

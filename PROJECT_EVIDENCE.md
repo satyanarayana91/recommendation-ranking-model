@@ -1,82 +1,22 @@
-# Project Evidence Checklist
+# Project evidence
 
-## Purpose
+This file points to the current, reproducible evidence for the recommendation-ranking project. It replaces the original planning checklist; the implementation and outstanding work are tracked in [TASKS.md](TASKS.md).
 
-This checklist tracks the visible evidence produced while building the Recommendation Ranking Model. The project will be considered complete only when the relevant implementation, results, tests, documentation, and demo evidence are available.
+## Available evidence
 
-**Current status:** Project setup and architecture documentation completed. Implementation and evaluation have not started.
+- Dataset quality and distributions: [EDA report](reports/dataset_eda.md)
+- Dataset validation queries and results: [SQL validation report](reports/sql_validation.md)
+- Split, candidates, metrics, and measured results: [ranking experiment report](reports/ranking_experiment.md)
+- Data assumptions and leakage controls: [assumptions and leakage review](reports/assumptions_and_leakage.md)
+- Local MLflow tracking: [tracking report](reports/mlflow_tracking.md)
+- Model explanations: [SHAP report](reports/shap_analysis.md)
+- Request and response examples: [demo request](reports/demo_request.json), [demo response](reports/demo_response.json), and [demo run notes](reports/demo_run.md)
+- Automated coverage: `tests/`
 
-## 1. Dataset
+## Screenshot status
 
-- [ ] Public dataset selected
-- [ ] Dataset source documented
-- [ ] Dataset description included
-- [ ] Data preprocessing documented
+No screenshots are included yet. Only genuine captures from this project's own run should be added under `docs/screenshots/`; see its [capture checklist](docs/screenshots/README.md). Do not add placeholder images or present an unimplemented dashboard as evidence.
 
-## 2. Metrics and Evaluation
+## Data and generated artifacts
 
-- [ ] Baseline metrics recorded
-- [ ] NDCG results recorded
-- [ ] MRR results recorded
-- [ ] Model comparison documented
-- [ ] Limitations documented
-
-## 3. Code
-
-- [ ] Data processing code
-- [ ] Feature engineering code
-- [ ] Ranking model code
-- [ ] Evaluation code
-- [ ] Explainability code
-- [ ] API code
-
-## 4. Screenshots
-
-- [ ] EDA / data analysis screenshot
-- [ ] Model results screenshot
-- [ ] Evaluation results screenshot
-- [ ] API / demo screenshot
-
-## 5. Tests
-
-- [ ] Unit tests
-- [ ] Evaluation tests
-- [ ] API tests
-
-## 6. API
-
-- [ ] `/rank` endpoint implemented
-- [ ] Request schema documented
-- [ ] Response schema documented
-- [ ] API example included
-
-## 7. README Documentation
-
-- [x] Problem statement
-- [x] Architecture diagram
-- [ ] Dataset description
-- [ ] Methodology
-- [ ] Evaluation
-- [ ] Results
-- [ ] Limitations
-- [ ] Setup instructions
-- [ ] Usage example
-
-## 8. Demo
-
-- [ ] End-to-end demo available
-- [ ] Demo instructions documented
-- [ ] Final project workflow demonstrated
-
-## Evidence Guidelines
-
-- Check an item only after the corresponding work has actually been completed and verified.
-- Record genuine results; never invent metrics or model improvements.
-- Use screenshots from actual project execution.
-- Document dataset sources and relevant assumptions.
-- Keep the code, reported results, and screenshots consistent.
-- Document limitations honestly, including any unfinished components.
-
-## Completion Criteria
-
-The project is complete when the planned workflow is implemented, evaluation results are reproducible, tests and API behavior are verified, documentation is accurate, and a working end-to-end demo is available.
+MovieLens data is downloaded locally and ignored by Git. Generated models, SHAP outputs, and local MLflow stores are also ignored. See [data policy](data/README.md) and [model artifact policy](models/README.md).
