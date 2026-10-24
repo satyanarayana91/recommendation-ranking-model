@@ -148,3 +148,17 @@ Only mark a task complete after its implementation or documentation has been ver
 - [ ] Validate all installation and execution commands.
 - [ ] Test the setup in a clean environment.
 - [ ] Update the README with verified results and troubleshooting guidance.
+
+
+### Screenshot and Evidence Collection
+
+- [ ] Create a location for project screenshots when implementation begins.
+- [ ] Capture genuine baseline evaluation results.
+- [ ] Capture XGBoost ranking evaluation results.
+- [ ] Capture the baseline-versus-model comparison.
+- [ ] Capture MLflow experiment tracking.
+- [ ] Capture a successful API request and response.
+- [ ] Add dashboard screenshots if a dashboard is implemented.
+- [ ] Check screenshots for sensitive information.
+- [ ] Add captions and explanations to the README.
+- [ ] Verify that screenshots match the actual implementation and recorded results.
