@@ -1,480 +1,381 @@
-# recommendation-ranking-model
-A machine learning project exploring recommendation ranking, evaluation, and model explainability.
-
-
 # Recommendation Ranking Model
 
-A practical machine learning project focused on building a recommendation ranking pipeline, from candidate generation and retrieval to ranking and reranking.
+A machine learning project focused on recommendation ranking, ranking evaluation, model explainability, and serving predictions through an API.
 
-## Objective
+> **Project status:** Planning and documentation. Implementation has not started. The dataset, trained model, measured evaluation results, and working API are not yet available.
 
-Build and evaluate a recommendation ranking system that ranks candidate items for a user or query using machine learning.
+## 1. Project Objective
 
-## Problem Statement
+Build a recommendation ranking pipeline that orders candidate items by their relevance to a user or recommendation context.
 
-## Architecture
+The project is intended to demonstrate practical skills in:
 
-The recommendation ranking pipeline follows four main stages:
-
-```mermaid
-flowchart TD
-    A["Candidate Generation<br/>Generate potential items for the user"]
-    B["Retrieval<br/>Retrieve relevant candidates"]
-    C["Ranking<br/>ML model assigns relevance scores"]
-    D["Reranking<br/>Produce the final ordered recommendation list"]
-
-    A --> B
-    B --> C
-    C --> D
-```
-
-### Pipeline Overview
-
-- **Candidate Generation:** Generate a set of potential items that could be recommended to a user.
-- **Retrieval:** Retrieve relevant candidates for the user.
-- **Ranking:** Use a machine learning model to assign relevance scores and rank the candidates.
-- **Reranking:** Apply the final ranking logic to produce the ordered recommendation list.
-
-**Current status:** Architecture documented; implementation not started.
-
-### What Is Being Ranked?
-
-The system ranks a set of candidate items that could potentially be recommended to a user.
-
-### For Whom?
-
-The ranking is performed for individual users based on available user, item, and interaction features, such as user preferences, historical interactions, and item characteristics.
-
-### Why Rank Them?
-
-A recommendation system may retrieve multiple candidate items, but not all candidates are equally relevant to the user. The goal of the ranking stage is to assign a relevance score to each candidate and order them so that the most relevant items appear higher in the recommendation list.
-
-### Objective
-
-Build a machine learning-based ranking system that learns from user-item interaction data and ranks candidate items according to their predicted relevance to the user.
-
-The project will focus on comparing a baseline ranking approach with an XGBoost-based ranking model and evaluating ranking quality using metrics such as NDCG and MRR.
-
-## Planned Pipeline
-
-Candidate Generation → Retrieval → Feature Engineering → Ranking Model → Reranking → Evaluation
-
-## Planned Components
-
-- Data exploration and preprocessing
-- Feature engineering
-- Baseline ranking approach
-- XGBoost ranking model
+- Recommendation systems and ranking fundamentals
+- Data exploration and feature engineering
+- Baseline development and gradient-boosted ranking models
 - Ranking evaluation using NDCG and MRR
-- MLflow experiment tracking
-- SHAP-based model analysis
-- FastAPI `/rank` endpoint
+- Experiment tracking with MLflow
+- Model explainability using SHAP
+- API development using FastAPI
+- Reproducibility, testing, and portfolio documentation
 
-## Current Status
+The exact dataset, ranking formulation, and implementation details will be finalized after dataset evaluation.
 
-🚧 Project setup — implementation not started.
+## 2. Problem Statement
 
-## Repository Structure
+Recommendation systems may produce multiple candidate items for a user. These candidates need to be ordered so that the most relevant items appear earlier in the list.
+
+The project will explore how a machine learning ranking model can improve this ordering compared with a simple baseline.
+
+The planned workflow is to inspect a suitable public dataset, define the relevance target, construct ranking features, establish a baseline, train and evaluate a ranking model, and expose the resulting ranking functionality through an API.
+
+The final problem formulation will depend on the selected dataset and the information it provides about users, items, interactions, and relevance.
+
+## 3. Planned Architecture
 
 ```text
-recommendation-ranking-model/
-├── README.md
-├── TASKS.md
-└── .gitignore
+Public Dataset
+      |
+      v
+Data Exploration and Validation
+      |
+      v
+Data Preparation and Feature Engineering
+      |
+      v
+Candidate Items / Ranking Examples
+      |
+      v
+Popularity Baseline
+      |
+      v
+Ranking Model (planned: XGBoost)
+      |
+      v
+Ranking Evaluation (NDCG, MRR)
+      |
+      v
+Experiment Tracking (MLflow)
+      |
+      v
+Model Explainability (SHAP)
+      |
+      v
+Prediction API (FastAPI)
 ```
 
-## Important Note
+**Architecture note:** This diagram describes the intended workflow, not a completed implementation. A separate candidate-generation or retrieval service will only be included if the chosen dataset and project scope justify it.
 
-This is a personal portfolio project. It does not contain proprietary code, data, or confidential information from any employer or client.
+## 4. Planned Technology Stack
 
-The components listed above are planned work, not completed features.
+| Area | Planned tools | Purpose |
+|---|---|---|
+| Programming | Python | Data processing and model development |
+| Data analysis | Pandas, NumPy | Data inspection and transformation |
+| Machine learning | Scikit-learn, XGBoost | Baseline and ranking experiments |
+| Evaluation | NDCG, MRR | Measure ranking quality |
+| Experiment tracking | MLflow | Record experiments and model metrics |
+| Explainability | SHAP | Investigate feature contributions |
+| API | FastAPI, Uvicorn | Serve ranking predictions |
+| Documentation and version control | Markdown, Git, GitHub | Reproducibility and portfolio presentation |
 
+These are planned technologies. Their actual use will be documented as implementation progresses.
 
+## 5. Dataset Selection and Data Limitations
 
+### Current status
 
-## Dataset and Data Limitations
+A public dataset has not yet been selected. Dataset-dependent details remain to be confirmed.
 
-### Dataset Selection
+### Expected data requirements
 
-This project will use a publicly available recommendation dataset to develop and evaluate a machine learning-based ranking system.
+The selected dataset should provide enough information to define relevant ranking examples. Depending on the dataset, this may include:
 
-The dataset will be selected based on its suitability for modeling user-item interactions, defining relevance labels, and evaluating ranking quality.
+- User or query identifiers
+- Item identifiers
+- Interaction or relevance information
+- Candidate items that can be ranked
+- Features available at prediction time
 
-**Current status:** Dataset selection is planned but not yet completed.
+The exact fields and relevance-label strategy will be documented after the dataset is selected and inspected.
 
-### Expected Data Structure
+### Potential limitations to investigate
 
-The dataset should support the following components:
+The following are possible risks, not confirmed properties of the eventual dataset:
 
-- **Users:** Identifiers or attributes representing users.
-- **Items:** Identifiers or attributes representing recommended items.
-- **Interactions:** User-item interactions, such as ratings, clicks, views, or purchases, depending on the selected dataset.
-- **Relevance labels:** Signals used to determine how relevant an item is to a user or recommendation context.
+- **Data sparsity:** Many users or items may have few interactions.
+- **Cold start:** New users or items may lack sufficient historical information.
+- **Implicit feedback:** Clicks or interactions may not directly represent user satisfaction.
+- **Popularity bias:** Frequently interacted-with items may dominate recommendations.
+- **Temporal limitations:** Historical interactions may not represent future preferences.
+- **Data leakage:** Features or labels may accidentally reveal information unavailable at prediction time.
+- **Generalizability:** Results from one dataset may not transfer to other users, items, or domains.
 
-The actual schema and available features will depend on the selected dataset.
+### Planned validation
 
-### Potential Data Limitations
+Before model training, the dataset will be assessed for:
 
-The following limitations will be investigated after dataset selection. They have not yet been confirmed.
+1. Schema, data types, missing values, and duplicate records.
+2. User, item, and interaction distributions.
+3. Availability and meaning of relevance labels.
+4. Suitability for the intended ranking formulation.
+5. Appropriate training, validation, and test splits.
+6. Potential leakage and limitations affecting interpretation.
 
-1. **Limited user information:** Insufficient user attributes may prevent the model from fully capturing individual preferences.
-2. **Sparse interactions:** Users may interact with only a small subset of available items, limiting preference information.
-3. **Cold-start problem:** New users or items may lack sufficient interaction history.
-4. **Implicit feedback limitations:** Clicks and views do not necessarily indicate positive interest.
-5. **Popularity bias:** Frequently interacted-with items may dominate recommendations.
-6. **Temporal limitations:** Historical interactions may not represent current preferences.
-7. **Data leakage:** Some features or records may reveal information unavailable at prediction time.
-8. **Generalizability:** Results on one dataset may not transfer directly to other domains or production environments.
+The final README will be updated with the actual dataset source, schema, and observed limitations once these have been verified.
 
-These are potential limitations, not confirmed findings. Their actual presence and impact will be assessed during exploratory data analysis.
+## 6. Evaluation Methodology
 
-### Data Quality and Validation Plan
+The project will compare a simple baseline with a learned ranking approach.
 
-After selecting the dataset, the project will:
+### Baseline
 
-- Inspect the schema and understand each field.
-- Check missing values, duplicate records, and inconsistent data types.
-- Analyze user, item, and interaction distributions.
-- Investigate interaction sparsity and item popularity.
-- Define an appropriate relevance-labeling strategy.
-- Check for data leakage.
-- Design a suitable train-validation-test split.
-- Document assumptions and confirmed limitations.
+A popularity-based baseline is planned. It will rank items using interaction or popularity information calculated from the training data only.
 
-### Impact on Ranking Evaluation
+The exact popularity definition will depend on the dataset.
 
-Dataset quality and relevance-label design directly affect ranking evaluation.
+### Ranking metrics
 
-**Normalized Discounted Cumulative Gain (NDCG)** and **Mean Reciprocal Rank (MRR)** will be considered to evaluate ranking quality once the dataset and evaluation methodology have been established.
+**Normalized Discounted Cumulative Gain (NDCG)**
 
-No performance results will be reported until the model has been implemented and evaluated.
+NDCG evaluates the quality of an ordered list while giving greater importance to relevant items placed near the top. The evaluation cutoff, such as NDCG@K, will be selected and documented during implementation.
 
-### Scope and Limitations
+**Mean Reciprocal Rank (MRR)**
 
-This is a personal portfolio project using public data. Its results will demonstrate performance on the selected dataset and evaluation setup; they will not guarantee similar performance in a production recommendation system.
+MRR measures how highly the first relevant item appears in the ranked results. It is useful when retrieving an early relevant result is important.
 
-No proprietary company or client data will be used.
+### Evaluation plan
 
+1. Define the ranking examples and relevance labels.
+2. Establish a reproducible data-splitting strategy.
+3. Prevent information from validation or test data from leaking into training features.
+4. Calculate baseline ranking metrics.
+5. Train the planned ranking model and evaluate it on the same evaluation setup.
+6. Compare the results using consistent metrics and cutoffs.
+7. Record experiment settings, results, and limitations.
+8. Report measured results only after the experiments have been run.
 
-## Evaluation Methodology
+### Illustrative example — not an actual result
 
-### Objective
+The following values only demonstrate how a comparison could be presented. They are **not measured project results**.
 
-The objective of evaluation is to determine whether the recommendation ranking model places relevant items higher in the ranked results.
+| Approach | Illustrative NDCG@K |
+|---|---:|
+| Popularity baseline | 0.60 |
+| Ranking model | 0.70 |
 
-The project will establish a baseline ranking approach and compare it with an XGBoost ranking model using appropriate ranking metrics.
+These values must not be presented as project findings. Actual values will be added only after evaluation has been completed.
 
-### Baseline Ranking Approach
+**Current status:** Evaluation design documented; dataset selection and experiments pending.
 
-A baseline provides a reference point for measuring whether a more advanced ranking model improves recommendation quality.
+## 7. Reproducibility and Setup
 
-The initial baseline will use **item popularity**, measured using interaction counts from the training data. Candidate items will be ranked by their popularity scores.
+### Planned prerequisites
 
-The baseline and trained model will be evaluated using the same test requests, candidate items, relevance labels, and ranking metrics wherever possible.
+- Python
+- Git
+- A compatible environment for the selected dependencies
 
-**Status:** Planned. Implementation and evaluation have not started.
+The exact Python version and dependency versions will be recorded after the environment is created and tested.
 
-### Normalized Discounted Cumulative Gain (NDCG)
+### Planned local environment setup (Windows)
 
-NDCG evaluates a ranked list by considering both the relevance of items and their positions. Highly relevant items appearing near the top contribute more to the score.
-
-NDCG is particularly useful when relevance labels have multiple levels, such as ratings of 1–5 or graded relevance labels.
-
-**Interpretation:**
-
-- A score closer to 1 indicates a ranking closer to the ideal ordering under the chosen evaluation setup.
-- A lower score indicates that relevant items may be ranked less effectively.
-- NDCG accounts for the positions of relevant items throughout the evaluated list.
-
-The project will select an appropriate cutoff, such as NDCG@5 or NDCG@10, based on the recommendation use case.
-
-### Mean Reciprocal Rank (MRR)
-
-MRR measures how highly the first relevant item appears in a ranked list.
-
-For a single recommendation request, the reciprocal rank is calculated as:
-
-`Reciprocal Rank = 1 / Rank of the First Relevant Item`
-
-Examples:
-
-- First relevant item at rank 1: score = 1.0
-- First relevant item at rank 2: score = 0.5
-- First relevant item at rank 3: score ≈ 0.333
-- No relevant item found: score = 0
-
-MRR is the average reciprocal rank across all evaluated requests.
-
-**Interpretation:**
-
-- A score closer to 1 indicates that the first relevant item generally appears near the top.
-- A lower score indicates that users may need to look further down the list to find a relevant item.
-- MRR focuses on the first relevant result, rather than the quality of every item in the list.
-
-The definition of relevance and the treatment of requests with no relevant items will be documented as part of the evaluation methodology.
-
-### Evaluation Dataset and Data Splitting
-
-The dataset will be divided into training, validation, and test sets using a strategy appropriate for the selected data.
-
-- **Training set:** Used to train the ranking model and calculate training-derived features.
-- **Validation set:** Used for model selection and hyperparameter tuning.
-- **Test set:** Reserved for final evaluation after model development.
-
-Where timestamps are available and suitable, a temporal split may be used to evaluate recommendations against future interactions.
-
-Popularity scores and other features must not use information from the evaluation period. Data leakage will be checked before interpreting the results.
-
-### Model Comparison
-
-The project will compare two approaches:
-
-1. **Popularity baseline:** Ranks candidate items using interaction counts from the permitted training data.
-2. **XGBoost ranking model:** Uses engineered user, item, and interaction features to learn a ranking function.
-
-Both approaches will be evaluated using the same test requests, candidate sets, and relevance labels wherever possible.
-
-The comparison will include NDCG@K and MRR, together with ranking-error analysis and documented dataset limitations.
-
-### What the Numbers Mean
-
-The evaluation results will help answer the following questions:
-
-- Does the XGBoost ranking model outperform the popularity baseline?
-- Does the model place highly relevant items closer to the top?
-- Does the model improve the position of the first relevant item?
-- Are improvements consistent across different recommendation requests?
-- Which ranking errors and limitations remain?
-
-For example, if a baseline achieves NDCG@10 of 0.60 and the model achieves 0.70, the model has an absolute improvement of 0.10, or 10 percentage points on the metric's 0–1 scale.
-
-The relative improvement would be approximately 16.7%. These numbers are illustrative only and are not results from this project.
-
-A higher metric score does not automatically establish a better user experience. Offline evaluation measures performance against the available dataset and relevance labels. Online experiments may be required to establish real-world impact.
-
-### Current Evaluation Status
-
-**Status:** Evaluation methodology documented; implementation and evaluation are pending.
-
-NDCG, MRR, baseline scores, and model comparison results will be reported only after implementation and evaluation.
-
-No performance improvement is claimed at this stage.
-
-
-## Reproducibility and Setup
-
-### Prerequisites
-
-The project is planned to use the following tools and technologies:
-
-- Python for data processing and model development.
-- Pandas and NumPy for data manipulation.
-- Scikit-learn for preprocessing and supporting ML utilities.
-- XGBoost for the ranking model.
-- MLflow for experiment tracking.
-- FastAPI for exposing the ranking model through an API.
-- Uvicorn for running the API server.
-- Git for version control.
-
-Exact package versions and system requirements will be documented after the implementation environment has been established and tested.
-
-### Project Environment
-
-The project will use a Python virtual environment to isolate dependencies and improve reproducibility.
-
-The following commands are planned for a Windows environment.
-
-Create the project directory and navigate into it:
-
-```bash
-mkdir recommendation-ranking-model
-cd recommendation-ranking-model
-```
-
-Create a virtual environment:
-
-```bash
-python -m venv .venv
-```
-
-Activate the environment in Windows Command Prompt:
-
-```bash
-.venv\Scripts\activate
-```
-
-Activate the environment in PowerShell:
+The following commands describe the intended setup. They have not yet been verified against a working implementation.
 
 ```powershell
+git clone <your-repository-url>
+cd recommendation-ranking-model
+
+python -m venv .venv
 .\.venv\Scripts\Activate.ps1
-```
 
-The Python version will be selected based on compatibility with the final dependency versions.
-
-### Install Dependencies
-
-Once the dependency list has been established, install the project requirements using:
-
-```bash
+python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-The `requirements.txt` file will contain the project's required Python packages and compatible versions.
+The dependency file and repository URL must exist before these commands can be used as written. If PowerShell blocks virtual-environment activation, the environment's activation policy may need to be addressed.
 
-After the environment has been tested, dependency versions will be pinned or locked to help reproduce the same environment.
-
-### Dataset Setup
-
-The project will use a publicly available recommendation dataset.
-
-After selecting the dataset, the README will document:
-
-- The original dataset source.
-- Download instructions.
-- Applicable license and usage restrictions.
-- Expected directory structure.
-- Required preprocessing steps.
-- Data schema and relevance-label definitions.
-
-Dataset files will not be committed to GitHub unless their license explicitly permits redistribution and the files are appropriate for repository storage.
-
-### Training the Ranking Model
-
-The project will eventually provide a training script that prepares the ranking data, trains the XGBoost ranking model, and records the relevant evaluation metrics.
-
-The planned command is:
+### Planned training command
 
 ```bash
 python src/train.py
 ```
 
-The final implementation will document the required input data, configuration parameters, model output location, and experiment-tracking behavior.
+This command is a planned interface. It will become usable after the training script is implemented and tested.
 
-**Status:** Planned — the training script has not been implemented or tested.
-
-### Running the Ranking API
-
-The project will expose the ranking functionality through a FastAPI endpoint.
-
-The planned API startup command is:
+### Planned API command
 
 ```bash
 uvicorn src.api:app --reload
 ```
 
-Once implemented, the API will provide an endpoint such as:
+If the API is implemented using the planned structure, the following routes may be provided:
+
+- `/rank` — ranking prediction endpoint
+- `/docs` — interactive API documentation
+
+These routes and commands are not currently confirmed to work.
+
+### Reproducibility requirements
+
+Once implementation begins, the project should document:
+
+- Dataset source and acquisition instructions
+- Python and dependency versions
+- Data preprocessing and split strategy
+- Random seeds where applicable
+- Model configuration and training procedure
+- Evaluation commands and metric definitions
+- API input and output schemas
+- Known limitations and environment-specific requirements
+
+## 8. Planned Repository Structure
+
+The repository is expected to evolve toward a structure similar to the following:
 
 ```text
-POST /rank
+recommendation-ranking-model/
+├── README.md
+├── TASKS.md
+├── requirements.txt
+├── .gitignore
+├── data/
+│   └── README.md
+├── notebooks/
+│   └── exploratory_analysis.ipynb
+├── src/
+│   ├── data/
+│   ├── features/
+│   ├── models/
+│   ├── evaluation/
+│   ├── training/
+│   └── api.py
+├── tests/
+├── artifacts/
+└── reports/
 ```
 
-The endpoint will accept a recommendation request and candidate items, apply the trained ranking model, and return the candidates ordered by predicted ranking scores.
+This is a proposed structure, not a claim that these files and directories already exist. The actual structure will be updated as the project develops. Dataset files and generated artifacts should not be committed if they are large, restricted, or unsuitable for public distribution.
 
-The final request and response schemas will be documented after implementation.
+## 9. Experiment Tracking and Explainability
 
-The interactive API documentation will be available at:
+### MLflow — planned
 
-```text
-http://127.0.0.1:8000/docs
-```
+MLflow is intended to track model experiments, including relevant configuration, evaluation metrics, and model artifacts where appropriate.
 
-This URL will be usable when the API server has been implemented and started successfully.
+The implementation will determine which parameters and outputs are logged. No MLflow runs are currently claimed.
 
-### Reproducibility Strategy
+### SHAP — planned
 
-The project will follow these practices to support reproducible experiments:
+SHAP may be used to investigate how model features contribute to predictions. Explanations will be interpreted in the context of the final model and available features.
 
-- Use a documented Python environment and dependency versions.
-- Keep data preprocessing consistent between training and inference.
-- Use fixed random seeds where applicable.
-- Document dataset sources, splits, and relevance-label definitions.
-- Record model parameters and evaluation metrics.
-- Track experiments using MLflow.
-- Save model artifacts and configuration details.
-- Document known limitations and any differences between runs.
+No SHAP analysis has been completed.
 
-Reproducibility does not guarantee identical results across every hardware configuration or software environment. Relevant version, hardware, and numerical differences will be documented when necessary.
+## 10. API and Demo
 
-### Current Status
+FastAPI is planned as the serving layer for the ranking model.
 
-**Status:** Reproducibility documentation drafted; implementation and execution are pending.
+The eventual API documentation should define:
 
-All commands in this section are planned examples. They must be validated against the final repository structure and actual implementation before being presented as tested instructions.
+- Expected request fields
+- Candidate-item representation
+- Required feature inputs
+- Ranked response format
+- Input validation and error handling
+- Model loading and prediction behavior
 
+A demo will be documented only after the API is implemented and tested. Screenshots, sample responses, and performance claims must come from genuine project runs.
 
-### Project Evidence
+## 11. Project Evidence
 
-Screenshots will be added after the corresponding project components have been implemented and tested.
+The following evidence may be added after the corresponding work is complete:
 
-Planned evidence includes:
+| Evidence | What it should demonstrate | Status |
+|---|---|---|
+| Data exploration | Actual dataset structure and quality checks | Pending |
+| Baseline and model comparison | Measured ranking metrics | Pending |
+| MLflow experiment | A real logged experiment | Pending |
+| SHAP explanation | Output from the implemented model | Pending |
+| API request and response | A successful request to the running API | Pending |
+| Demo or walkthrough | The actual implemented workflow | Pending |
 
-- **Model evaluation:** Measured NDCG@K and MRR results, including baseline comparisons.
-- **Experiment tracking:** MLflow runs, parameters, metrics, and available model artifacts.
-- **API demonstration:** A successful `/rank` request and its response.
-- **Performance dashboard:** Optional visual summary of evaluation results.
+Only genuine outputs from this repository should be published as evidence. Illustrations or mockups must be explicitly labelled and must not be presented as implementation results.
 
-All screenshots will represent actual project outputs. No placeholder screenshots or fabricated performance results will be presented as evidence.
+Before publishing evidence, check for private information, credentials, tokens, local file paths, restricted data, and other sensitive content.
 
-**Current status:** Evidence collection is pending implementation. No model results, MLflow experiments, or API screenshots are available yet.
+## 12. Quality Assurance and Publication Readiness
 
+Before describing the project as implemented or sharing a completed demo, verify the relevant items below.
 
-optional; do not build a dashboard merely to increase the number of portfolio images.
-4. What each screenshot must prove
+### Documentation
 
+- [ ] README matches the actual implementation.
+- [ ] Planned and completed work are clearly distinguished.
+- [ ] Dataset source, assumptions, and limitations are documented.
+- [ ] Evaluation metrics and results are reproducible.
+- [ ] Setup instructions have been tested.
+- [ ] No accidental notes, review fragments, or placeholder screenshots remain.
 
+### Code and model
 
+- [ ] Data validation and preprocessing are tested.
+- [ ] Training and evaluation can be reproduced.
+- [ ] Ranking metrics are calculated correctly.
+- [ ] The baseline and model use a consistent evaluation setup.
+- [ ] Data leakage checks are completed.
+- [ ] Relevant automated tests pass.
 
+### API and demo
 
+- [ ] API request and response schemas are documented.
+- [ ] Valid and invalid inputs are tested.
+- [ ] The model can be loaded and used as documented.
+- [ ] Demo evidence is captured from a real run.
+- [ ] Any performance claims are supported by measurements.
 
+### Public repository
 
+- [ ] No secrets, credentials, or private data are included.
+- [ ] `.gitignore` excludes appropriate local files and artifacts.
+- [ ] Dependencies and setup steps are documented.
+- [ ] Repository files are consistent with the README.
+- [ ] The final changes have been reviewed before publishing.
 
+These checks describe the planned quality process; they should only be marked complete after verification.
 
-A. Model results
-Show measured baseline and XGBoost NDCG@K and MRR scores, with the evaluation setup identified. Capture this only after evaluation has actually run.
+## 13. Current Status and Next Steps
 
+**Current status:** Planning and documentation. Implementation has not started.
 
-
-
-
-
-
-
-
-
-
-
-B. MLflow experiment
-Show genuine experiment runs, parameters, metrics, and available artifacts after MLflow integration.
-
-
-
-
-
-
-
-
-
-
-
-
-C. API response
-Show an actual successful POST /rank request and the returned ranked candidates. Include an error response only if useful and genuinely tested.
-
-
-
-
-
-
-
-
-
-
-
-
-D. Dashboard — optional
-If a dashboard is eventually implemented, show a concise summary of measured evaluation metrics and the baseline comparison.
-
-
-
-The images above are illustrative visual references only. They are not screenshots of your project and must not be committed as project evidence.
-Before publishing any real screenshot, verify that it is readable, accurately described, consistent with your recorded results, and free of credentials, personal information, proprietary data, and confidential company details.
+| Area | Status |
+|---|---|
+| Project concept and intended workflow | Documented |
+| Dataset selection | Pending |
+| Dataset exploration and validation | Pending |
+| Feature engineering | Pending |
+| Popularity baseline | Pending |
+| Ranking model | Pending |
+| NDCG and MRR evaluation | Methodology documented; results pending |
+| MLflow experiment tracking | Pending |
+| SHAP explainability | Pending |
+| FastAPI endpoint | Pending |
+| Tests and reproducibility verification | Pending |
+| Genuine demo evidence | Pending |
+
+### Next steps
+
+1. Select and inspect a suitable public dataset.
+2. Finalize the ranking problem and relevance-label strategy.
+3. Create the initial project environment and dependency file.
+4. Implement data validation and exploratory analysis.
+5. Establish a popularity baseline and evaluation split.
+6. Train and evaluate the ranking model.
+7. Add experiment tracking and explainability.
+8. Implement and test the API.
+9. Update this README with verified commands, measured results, and genuine evidence.
+
+The project will be described as implemented only when the relevant functionality has actually been built and verified.
+
+---
+
+*This README documents the intended project scope and current planning status. All future implementation details and results should be updated from verified project evidence.*
