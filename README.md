@@ -416,3 +416,65 @@ Planned evidence includes:
 All screenshots will represent actual project outputs. No placeholder screenshots or fabricated performance results will be presented as evidence.
 
 **Current status:** Evidence collection is pending implementation. No model results, MLflow experiments, or API screenshots are available yet.
+
+
+optional; do not build a dashboard merely to increase the number of portfolio images.
+4. What each screenshot must prove
+
+
+
+
+
+
+
+
+
+A. Model results
+Show measured baseline and XGBoost NDCG@K and MRR scores, with the evaluation setup identified. Capture this only after evaluation has actually run.
+
+
+
+
+
+
+
+
+
+
+
+
+B. MLflow experiment
+Show genuine experiment runs, parameters, metrics, and available artifacts after MLflow integration.
+
+
+
+
+
+
+
+
+
+
+
+
+C. API response
+Show an actual successful POST /rank request and the returned ranked candidates. Include an error response only if useful and genuinely tested.
+
+
+
+
+
+
+
+
+
+
+
+
+D. Dashboard — optional
+If a dashboard is eventually implemented, show a concise summary of measured evaluation metrics and the baseline comparison.
+
+
+
+The images above are illustrative visual references only. They are not screenshots of your project and must not be committed as project evidence.
+Before publishing any real screenshot, verify that it is readable, accurately described, consistent with your recorded results, and free of credentials, personal information, proprietary data, and confidential company details.
