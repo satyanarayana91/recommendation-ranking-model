@@ -132,3 +132,19 @@ Only mark a task complete after its implementation or documentation has been ver
 - [ ] Identify potential sources of data leakage.
 - [ ] Plan the train-validation-test split.
 - [ ] Document confirmed dataset limitations after inspection.
+### Reproducibility and Setup
+
+- [ ] Select a compatible Python version.
+- [ ] Create and document the virtual environment.
+- [ ] Establish the project dependency list.
+- [ ] Create `requirements.txt` with compatible package versions.
+- [ ] Document dataset download and preparation instructions.
+- [ ] Implement the training script.
+- [ ] Document training configuration and output artifacts.
+- [ ] Configure MLflow experiment tracking.
+- [ ] Implement the FastAPI `/rank` endpoint.
+- [ ] Document API request and response schemas.
+- [ ] Add instructions for starting the API server.
+- [ ] Validate all installation and execution commands.
+- [ ] Test the setup in a clean environment.
+- [ ] Update the README with verified results and troubleshooting guidance.
